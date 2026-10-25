@@ -98,7 +98,7 @@ console.log(os.platform());
 | Feature           | Browser                                                                  | Node.js                                               |
 | ----------------- | ------------------------------------------------------------------------ | ----------------------------------------------------- |
 | Main purpose      | Webpage functionality                                                    | Server-side and general-purpose JavaScript            |
-| मुख्य उद्देश्य    | Webpage को interactive बनाना                                             | Backend और अन्य applications बनाना                    |
+| मुख्य उद्देश्य         | Webpage को interactive बनाना                                              | Backend और अन्य applications बनाना                    |
 | DOM               | Normally available                                                       | Not provided by default                               |
 | File access       | Restricted browser APIs                                                  | Node.js file-system APIs                              |
 | Global object     | `globalThis` refers to the browser global environment, commonly `window` | `globalThis` refers to the Node.js global environment |
@@ -496,8 +496,5 @@ Console: object
 * [ ] I completed the practical task.
 * [ ] I can explain the differences in English.
 
-**Next Lesson:** `05-NodeJS-Modules-and-CommonJS.md`
-
-In the next lesson, we will learn about modules, `require()`, `module.exports`, and how to split a Node.js application into multiple files.
-
-अगले lesson में हम modules, `require()`, `module.exports` और Node.js project को multiple files में organize करना सीखेंगे।
+**Next Lesson:** `05-Event Loop and Asynchronous Programming.md`
+ 
