@@ -2,10 +2,10 @@ const http = require("http");
 const fs = require('fs')
  
 const server = http.createServer((req, res)=> {
-  console.log(req.url, req.method, req.headers);
+  console.log(req.url, req.method);
 
-  if(req.url=== '/'){
-  res.setHeader('content-Type', 'text/html')
+  if(req.url === '/'){
+      res.setHeader('content-Type', 'text/html')
       res.write('<html>')
       res.write('<head><title> anurag </title></head>  ') 
       res.write('<body> <h1>Enter your details </h>')
@@ -22,11 +22,32 @@ const server = http.createServer((req, res)=> {
       res.write('</body>')
       res.write('</html>')
       return  res.end()
-  }else if (req.url.toLocaleLowerCase() === '/submit-details'&& req.method === 'POST'){
-    fs.writeFileSync('user.txt', 'Anurag chamoli')
+
+  }
+
+  else if (req.url.toLocaleLowerCase() === '/submit-details'&& req.method === 'POST'){
+
+    const body = []
+    req.on('data',chunk =>{
+        console.log(chunk)
+        body.push(chunk)
+    });
+    req.on('end',()=>{
+        const fullBody= Buffer.concat(body).toString()
+        console.log(fullBody);
+        const param = new URLSearchParams(fullBody)
+        // const bodyObj = {};
+        // for (const[key,val] of param.entries()){
+        //     bodyObj[key] = val;
+        // }
+        const bodyObj = Object.fromEntries(param)
+        console.log(bodyObj)
+        fs.writeFileSync('user.txt', JSON.stringify(bodyObj))
+    })
+
     res.statusCode = 302
     res.setHeader('Location','/')
-     res.end()
+     return res.end()
   }
       res.setHeader('content-Type', 'text/html')
       res.write('<html>')
