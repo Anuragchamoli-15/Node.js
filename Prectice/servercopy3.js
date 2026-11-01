@@ -23,6 +23,7 @@ const server = http.createServer((req, res)=> {
       res.write('</html>')
       return  res.end()
   }else if (req.url.toLocaleLowerCase() === '/submit-details'&& req.method === 'POST'){
+    
     fs.writeFileSync('user.txt', 'Anurag chamoli')
     res.statusCode = 302
     res.setHeader('Location','/')

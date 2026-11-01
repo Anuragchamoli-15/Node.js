@@ -34,7 +34,6 @@ const server = http.createServer((req, res)=> {
     });
     req.on('end',()=>{
         const fullBody= Buffer.concat(body).toString()
-        console.log(fullBody);
         const param = new URLSearchParams(fullBody)
         // const bodyObj = {};
         // for (const[key,val] of param.entries()){
