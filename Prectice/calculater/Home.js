@@ -1,12 +1,11 @@
-// import Calculater from "./Calculater.js"
-const Calculater = require('./calculater')
+import Calculater from "./Calculater.js";
 
-const Home =(req,res) =>{
-    console.log(req.url,req.method)
+const Home = (req, res) => {
+  console.log(req.url, req.method);
 
-    if(req.url === '/'){
-        res.setHeader('content-type' , 'text/html')
-        res.write (`
+  if (req.url === "/") {
+    res.setHeader("content-type", "text/html");
+    res.write(`
             <html lang="en">
 <head>
     <title>Calculater</title>
@@ -18,12 +17,11 @@ const Home =(req,res) =>{
     <form action="/calculater" method="POST"><button>Calculater</button></form>
 </body>
 </html>
-            `)
-            return res.end()
-    }else if (req.url === '/calculater' && req.method === 'POST'){
-        
-        Calculater(req,res)}
-}
+            `);
+    return res.end();
+  } else {
+    Calculater(req, res);
+  }
+};
 
-
-module.exports = Home
+export default Home;

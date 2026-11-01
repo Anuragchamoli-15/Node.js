@@ -1,7 +1,10 @@
-const Calculater = (req,res)=>{
-    if(req.url === '/calculater' && req.method === 'POST'){
-        res.setHeader('content-type', 'text.html')
-        res.write(`
+import Result from "./Result.js";
+
+const Calculater = (req, res) => {
+  console.log(req.url, req.method);
+  if (req.url === "/calculater" && req.method === "POST") {
+    res.setHeader("content-type", "text.html");
+    res.write(`
 <body>
      <form action="/calculaterresult" method="POST">
 
@@ -15,16 +18,12 @@ const Calculater = (req,res)=>{
      </form>
 </body>
 </html>
-            `)
-            res.end()
-    }else if (req.url.toLowerCase() === '/calculaterresult' && req.method === 'POST'){
-        req.on('data', (chunk)=>{
-            console.log(chunk)
-        })
-    }
-    // res.end()
+            `);
+    return res.end();
+  } else {
+    Result(req, res);
+    return res.end()
+  }
+};
 
-    
-}
-
-module.exports = Calculater
+export default Calculater;
