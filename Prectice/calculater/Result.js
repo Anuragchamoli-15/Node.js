@@ -1,34 +1,31 @@
 const Result = (req, res) => {
-  if (req.url.toLowerCase() === "/calculaterresult" && req.method === "POST") {
-    res.setHeader("content-Type", "text/html");
-    const dataList = []
-    req.on('data',(chunk) =>{
-        console.log(chunk)
-        dataList.push(chunk)
-    })
+    const dataList = [];
+    req.on("data", (chunk) => {
+      console.log(chunk);
+      dataList.push(chunk);
+    });
 
-    req.on('end' , ()=>{
-        const List = Buffer.concat(dataList).toString()
-        const finalList = new URLSearchParams(List)
-
-        const obj =  Object.fromEntries(finalList)
-        console.log(obj)
-
-        const value = obj.value1+obj.value2
-        console.log(value)
-
-    })
+    req.on("end", () => {
+      const List = Buffer.concat(dataList).toString();
+      const finalList = new URLSearchParams(List);
+      const obj = Object.fromEntries(finalList);
+      const value = Number(obj.First) + Number(obj.Second);
+      console.log(value);
+       res.setHeader("content-type", "text/html");
     res.write(`
         <html lang="en">
 <head>
-    <title>Calculater</title>
+    <title>calculator</title>
 </head>
 <body>
     <h1>hello here is your result</h1>
+    <h2>your sum is ${value}</h2>
 </body>
 </html>
-        `);
+        `)
+        res.end()
+    });
+    
   }
-};
 
 export default Result;

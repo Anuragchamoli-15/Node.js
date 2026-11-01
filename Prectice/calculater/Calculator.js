@@ -1,12 +1,12 @@
 import Result from "./Result.js";
 
-const Calculater = (req, res) => {
+const calculator = (req, res) => {
   console.log(req.url, req.method);
-  if (req.url === "/calculater" && req.method === "POST") {
+  if (req.url === "/calculator" && req.method === "POST") {
     res.setHeader("content-type", "text.html");
     res.write(`
 <body>
-     <form action="/calculaterresult" method="POST">
+     <form action="/calculatorresult" method="POST">
 
         <label for="value1">value1</label>
         <input type="text" name="value1"  id="value1">
@@ -20,10 +20,12 @@ const Calculater = (req, res) => {
 </html>
             `);
     return res.end();
-  } else {
+  }
+  
+  else {
     Result(req, res);
-    return res.end()
+    return res.end();
   }
 };
 
-export default Calculater;
+export default calculator;
